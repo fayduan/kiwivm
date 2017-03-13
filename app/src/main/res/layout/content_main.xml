@@ -14,7 +14,87 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/txt_status"
+        style="@style/LabelTextView"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Status" />
+
+    <TextView
+        android:id="@+id/txt_ipv4"
+        style="@style/LabelTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_status"
+        android:text="IPv4" />
+
+    <TextView
+        android:id="@+id/txt_ipv6"
+        style="@style/LabelTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_ipv4"
+        android:text="IPv6" />
+
+    <TextView
+        android:id="@+id/txt_data_counter"
+        style="@style/LabelTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_ipv6"
+        android:text="Data" />
+
+    <TextView
+        android:id="@+id/txt_data_next_reset"
+        style="@style/LabelTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_data_counter"
+        android:text="Next Date" />
+
+
+    <TextView
+        android:id="@+id/info_status"
+        style="@style/LabelTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/txt_status"
+        android:text="Status" />
+
+    <TextView
+        android:id="@+id/info_ipv4"
+        style="@style/LabelTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_status"
+        android:layout_toRightOf="@id/txt_ipv4"
+        android:text="IPv4" />
+
+    <TextView
+        android:id="@+id/info_ipv6"
+        style="@style/LabelTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_ipv4"
+        android:layout_toRightOf="@id/txt_ipv6"
+        android:text="IPv6" />
+
+    <TextView
+        android:id="@+id/info_data_counter"
+        style="@style/LabelTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_ipv6"
+        android:layout_toRightOf="@id/txt_data_counter"
+        android:text="Data" />
+
+    <TextView
+        android:id="@+id/info_data_next_reset"
+        style="@style/LabelTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/info_data_counter"
+        android:layout_toRightOf="@id/txt_data_next_reset"
+        android:text="Next Date" />
+
 </RelativeLayout>

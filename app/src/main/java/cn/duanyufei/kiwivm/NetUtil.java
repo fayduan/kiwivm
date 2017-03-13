@@ -89,6 +89,7 @@ public class NetUtil {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
+                        Log.i(TAG, "run: error");
                         mCallBack.onError();
                     }
                 });
@@ -97,6 +98,7 @@ public class NetUtil {
             @Override
             public void onResponse(final Response response) throws IOException {
                 final String re = response.body().string();
+                Log.i(TAG, "onResponse: " + re);
                 mHandler.post(new Runnable() {
                     public void run() {
                         mCallBack.onSuccess(re);
@@ -138,7 +140,7 @@ public class NetUtil {
             @Override
             public void onResponse(final Response response) throws IOException {
                 final String re = response.body().string();
-                Log.i(TAG, "onResponse: "+re);
+                Log.i(TAG, "onResponse: " + re);
                 mHandler.post(new Runnable() {
                     public void run() {
                         mCallBack.onSuccess(re);

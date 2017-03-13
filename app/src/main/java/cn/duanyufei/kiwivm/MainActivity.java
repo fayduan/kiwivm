@@ -5,12 +5,17 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import cn.duanyufei.kiwivm.model.LiveServiceInfo;
 
 public class MainActivity extends AppCompatActivity {
 
+    final static String TAG = "MainActivity";
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +31,25 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        init();
+    }
+
+    private void init() {
+        Log.i(TAG, "init: ");
+        NetUtil.getInstance(this).getMessage(AppDefine.SERVER + AppDefine.LIVE_SERVICE_INFO + AppDefine.ID,
+                new NetUtil.MOkCallBack() {
+
+                    @Override
+                    public void onSuccess(String rep) {
+                        LiveServiceInfo info = (LiveServiceInfo)GsonUtil.fromJson(rep, LiveServiceInfo.class);
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
     }
 
     @Override
