@@ -8,3 +8,4 @@
 .externalNativeBuild
 *.jks
 gradle.properties
+app/KiwiVM_*.apk

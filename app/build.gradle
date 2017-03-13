@@ -42,18 +42,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseConfig
             applicationVariants.all { variant ->
-                renameAPK(variant, defaultConfig, 'R')
+                renameAPK(variant, defaultConfig)
             }
         }
     }
 }
 
-def renameAPK(variant, defaultConfig, buildType) {
+def renameAPK(variant, defaultConfig) {
     variant.outputs.each { output ->
-        def formattedDate = new Date().format('yyyyMMdd')
-
         def file = output.packageApplication.outputFile
-        def fileName = "ISeeYou_" + defaultConfig.versionName + ".apk"
+        def fileName = "KiwiVM_" + defaultConfig.versionName + ".apk"
         output.packageApplication.outputFile = new File(file.parent, fileName)
     }
 }
