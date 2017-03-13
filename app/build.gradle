@@ -30,7 +30,7 @@ android {
     }
     signingConfigs {
         releaseConfig {
-            storeFile file("../iseeu.jks")
+            storeFile file("../fayduan.jks")
             storePassword project.hasProperty("KEYSTORE_PWD") ? KEYSTORE_PWD : System.getenv("KEYSTORE_PWD")
             keyAlias project.hasProperty("ALIAS_NAME") ? ALIAS_NAME : System.getenv("ALIAS_NAME")
             keyPassword project.hasProperty("ALIAS_PWD") ? ALIAS_PWD : System.getenv("ALIAS_PWD")
