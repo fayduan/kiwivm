@@ -1,4 +1,4 @@
-package cn.duanyufei.kiwivm;
+package cn.duanyufei.kiwivm.util;
 
 import com.google.gson.Gson;
 

@@ -1,6 +1,5 @@
-package cn.duanyufei.kiwivm;
+package cn.duanyufei.kiwivm.util;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -25,6 +24,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManagerFactory;
 
+import cn.duanyufei.kiwivm.app.KWApplication;
+
 /**
  * desc: HTTP/HTTPS 请求通用类
  * Created by DUAN Yufei on 2017/3/8.
@@ -48,13 +49,13 @@ public class NetUtil {
     }
 
     //获取实例
-    public static NetUtil getInstance(Context context) {
+    public static NetUtil getInstance() {
         if (mInstance == null) {
             synchronized (NetUtil.class) {
                 if (mInstance == null) {
                     mInstance = new NetUtil();
                     try {
-                        mInstance.setCertificates(context.getAssets().open("server.cer"));
+                        mInstance.setCertificates(KWApplication.getContext().getAssets().open("server.cer"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

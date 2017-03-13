@@ -1,5 +1,6 @@
-package cn.duanyufei.kiwivm;
+package cn.duanyufei.kiwivm.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +17,14 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import cn.duanyufei.kiwivm.R;
+import cn.duanyufei.kiwivm.app.AppDefine;
 import cn.duanyufei.kiwivm.model.LiveServiceInfo;
 import cn.duanyufei.kiwivm.model.VzStatus;
+import cn.duanyufei.kiwivm.util.GsonUtil;
+import cn.duanyufei.kiwivm.util.NetUtil;
+import cn.duanyufei.kiwivm.util.StorageUtil;
+import cn.duanyufei.kiwivm.util.ToastUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvData;
     private TextView tvDate;
     private TextView tvData2;
+    private View progressView;
     private FloatingActionButton fab;
 
     @Override
@@ -44,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         tvData = (TextView) findViewById(R.id.info_data_counter);
         tvData2 = (TextView) findViewById(R.id.info_data_counter2);
         tvDate = (TextView) findViewById(R.id.info_data_next_reset);
+        progressView = findViewById(R.id.progress);
+        progressView.setVisibility(View.INVISIBLE);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -56,27 +66,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getLiveInfo();
     }
 
     private void getLiveInfo() {
 
+        String id = StorageUtil.getID();
+        String key = StorageUtil.getKey();
+        if (id.equals("") || key.equals("")) {
+            ToastUtil.show(this, "Config key first", ToastUtil.SHORT);
+            startSettings();
+            return;
+        }
+
         fab.setClickable(false);
+        progressView.setVisibility(View.VISIBLE);
 
         Log.i(TAG, "init: ");
-        NetUtil.getInstance(this).getMessage(AppDefine.SERVER + AppDefine.LIVE_SERVICE_INFO + AppDefine.ID,
+        String url = AppDefine.SERVER + AppDefine.LIVE_SERVICE_INFO + AppDefine.ID + id + AppDefine.KEY + key;
+        NetUtil.getInstance().getMessage(url,
                 new NetUtil.MOkCallBack() {
 
                     @Override
                     public void onSuccess(String rep) {
                         LiveServiceInfo info = (LiveServiceInfo) GsonUtil.fromJson(rep, LiveServiceInfo.class);
                         updateTextView(info);
-                        fab.setClickable(true);
+                        finishNetConnect();
                     }
 
                     @Override
                     public void onError() {
-                        fab.setClickable(true);
+                        finishNetConnect();
                     }
                 });
     }
@@ -88,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             tvIpv4.setText(info.getIp_addresses().get(0));
             tvIpv6.setText(info.getIp_addresses().get(1));
             long data = info.getData_counter();
-            tvData2.setText(new DecimalFormat(",###").format(data)+" B");
+            tvData2.setText(new DecimalFormat(",###").format(data) + " B");
             double doubleData = (double) data / 1024.0 / 1024.0 / 1024.0;
             String dispData = String.format("%.8f GB", doubleData);
             tvData.setText(dispData);
@@ -99,7 +125,16 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+    }
 
+    private void startSettings() {
+        Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+        startActivity(intent);
+    }
+
+    private void finishNetConnect() {
+        fab.setClickable(true);
+        progressView.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -118,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startSettings();
             return true;
         }
 
