@@ -45,11 +45,19 @@
         android:text="Data" />
 
     <TextView
+        android:id="@+id/txt_data_counter2"
+        style="@style/LabelTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_data_counter"
+        android:text="Data" />
+
+    <TextView
         android:id="@+id/txt_data_next_reset"
         style="@style/LabelTextView"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_data_counter"
+        android:layout_below="@+id/txt_data_counter2"
         android:text="Next Date" />
 
 
@@ -59,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/txt_status"
-        android:text="Status" />
+        android:text="..." />
 
     <TextView
         android:id="@+id/info_ipv4"
@@ -68,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/info_status"
         android:layout_toRightOf="@id/txt_ipv4"
-        android:text="IPv4" />
+        android:text="..." />
 
     <TextView
         android:id="@+id/info_ipv6"
@@ -77,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/info_ipv4"
         android:layout_toRightOf="@id/txt_ipv6"
-        android:text="IPv6" />
+        android:text="..." />
 
     <TextView
         android:id="@+id/info_data_counter"
@@ -86,15 +94,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/info_ipv6"
         android:layout_toRightOf="@id/txt_data_counter"
-        android:text="Data" />
+        android:text="..." />
+
+    <TextView
+        android:id="@+id/info_data_counter2"
+        style="@style/LabelTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_data_counter"
+        android:layout_toRightOf="@id/txt_data_counter"
+        android:text="..." />
 
     <TextView
         android:id="@+id/info_data_next_reset"
         style="@style/LabelTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/info_data_counter"
+        android:layout_below="@+id/info_data_counter2"
         android:layout_toRightOf="@id/txt_data_next_reset"
-        android:text="Next Date" />
+        android:text="..." />
 
 </RelativeLayout>

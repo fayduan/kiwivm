@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvIpv6;
     private TextView tvData;
     private TextView tvDate;
+    private TextView tvData2;
     private FloatingActionButton fab;
 
     @Override
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         tvIpv4 = (TextView) findViewById(R.id.info_ipv4);
         tvIpv6 = (TextView) findViewById(R.id.info_ipv6);
         tvData = (TextView) findViewById(R.id.info_data_counter);
+        tvData2 = (TextView) findViewById(R.id.info_data_counter2);
         tvDate = (TextView) findViewById(R.id.info_data_next_reset);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -85,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
             tvIpv4.setText(info.getIp_addresses().get(0));
             tvIpv6.setText(info.getIp_addresses().get(1));
             long data = info.getData_counter();
+            tvData2.setText(new DecimalFormat(",###").format(data)+" B");
             double doubleData = (double) data / 1024.0 / 1024.0 / 1024.0;
             String dispData = String.format("%.8f GB", doubleData);
             tvData.setText(dispData);

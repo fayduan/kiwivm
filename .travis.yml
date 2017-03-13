@@ -1,0 +1,30 @@
+language: android
+sudo: false
+jdk:
+- oraclejdk8
+android:
+  components:
+  - tools
+  - platform-tools
+  - build-tools-25.0.2
+  - android-25
+  - extra-android-m2repository
+  - extra-android-support
+  - junit-4.12
+  - okhttp-2.7.5
+  - okio-1.11.0
+  - gson-2.8.0
+script:
+- "./gradlew assembleRelease"
+before_install:
+- openssl aes-256-cbc -K $encrypted_67a14df3a6a2_key -iv $encrypted_67a14df3a6a2_iv
+  -in fayduan.jks.enc -out fayduan.jks -d
+deploy:
+  provider: releases
+  api_key:
+    secure: CEgDsJkDn1sowckZibTzubJoc7KTepboRL9GeFeaAM9MgpTh5LdDHRLi//cHsOR+InF6PPLvnBD2YZu/lGfYRA1vfIqBwkQmMVWmDwWemJe2M9dd5e6pQGYqm/2KFtCszgEFU/gZpWtFPWKREReiLyRBfdOCRldjWtWu+pHv30U09aBqWQY4+m0bZoj2mAaxDDLl5BPxTRHpQourMPNUo/KT8IBNzafVIZHmFEFVTl1X8WslhABUnWhK7Yftqhc2zImbDcMUh0PQdIwNCaBJnQ2DQAI7QmlpNRgAuQIDAnesfVvCAic5dE9SgxW4W3xKVeQ0q+7PA67zoMtf+xehBxhaDDG+pkd7EYnyyPh5Tswk1jSpUdeIxqC5E9B+7zkSBHgmW4qloPvyiha4ZQWpD3Sg+FKlyRCzZBBta61D6SULCdwwIixtMdawRyBs+HVbkfcQWlDZCHSBImYnC+xSvkubf42VudKl+mugYyqbaWVpPXQmtA84QrAq9dZWMeXdc/GyWitM/PcszkXmVY0mrJLNlhrli70Sd+2IpF9d9v7Noz5idxt9rMkdgO0XZLCzT0u02GK3ilAl1WJrZFbWGyjQxc2gnJ6NXkZ3PvGTZros5aZ7efgdDG497QHdOmYShxS+nqVBuhU5KAlsGjbmZ5+k35740BfvnkGT+2rtfas=
+  file_glob: true
+  file: app/build/outputs/apk/KiwiVM*.apk
+  on:
+    tags: true
+    repo: fayduan/kiwivm
