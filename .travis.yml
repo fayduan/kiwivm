@@ -28,3 +28,5 @@ deploy:
   on:
     tags: true
     repo: fayduan/kiwivm
+notifications:
+  email: false
