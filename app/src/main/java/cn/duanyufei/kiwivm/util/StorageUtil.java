@@ -14,7 +14,7 @@ public class StorageUtil {
     /**
      * 公用配置
      */
-    private static String LOCAL_STORAGE = "kiwivm_storage";
+    private static final String LOCAL_STORAGE = "kiwivm_storage";
 
     private static SharedPreferences sharedPreferences
             = KWApplication.getInstance().getSharedPreferences(LOCAL_STORAGE, Context.MODE_PRIVATE);
@@ -22,13 +22,15 @@ public class StorageUtil {
     /**
      * 数据标签
      */
-    private static String ID = "veid";
-    private static String KEY = "api_key";
+    private static final String ID = "veid";
+    private static final String KEY = "api_key";
+    private static final String TOTAL = "total";
     /**
      * 用户数据
      */
     private static String sId = null;
     private static String sKey = null;
+    private static int sTotal = 0;
 
     /**
      * Getters & Setters
@@ -58,6 +60,20 @@ public class StorageUtil {
         sKey = key;
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(KEY, sKey);
+        editor.apply();
+    }
+
+    public static int getTotal() {
+        if (sTotal == 0) {
+            sTotal = sharedPreferences.getInt(TOTAL, 0);
+        }
+        return sTotal;
+    }
+
+    public static void setTotal(int total) {
+        sTotal = total;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(TOTAL, total);
         editor.apply();
     }
 }

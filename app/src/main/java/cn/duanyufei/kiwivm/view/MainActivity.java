@@ -123,18 +123,18 @@ public class MainActivity extends AppCompatActivity {
             double doubleData = (double) data / 1024.0 / 1024.0 / 1024.0;
             String dispData = String.format("%.3f GB", doubleData);
             tvData.setText(dispData);
-            double leftData = AppDefine.TOTAL - doubleData;
+            double leftData = (double) StorageUtil.getTotal() - doubleData;
             tvData2.setText(String.format("%.3f GB", leftData));
             Date time = new Date(info.getData_next_reset() * 1000);
             DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
             String dispDate = String.format(format.format(time));
             tvDate.setText(dispDate);
 
-            int percent = (int) (doubleData / AppDefine.TOTAL * 100);
+            int percent = (int) (doubleData / (double) StorageUtil.getTotal() * 100);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                dataGraph.setProgress(50);
+                dataGraph.setProgress(percent);
             } else {
-                dataGraph.setProgress(50, true);
+                dataGraph.setProgress(percent, true);
             }
         } catch (Exception e) {
             Log.i(TAG, "updateTextView: " + e.getMessage());

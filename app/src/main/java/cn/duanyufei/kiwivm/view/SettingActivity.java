@@ -14,6 +14,7 @@ public class SettingActivity extends AppCompatActivity {
 
     private EditText etId;
     private EditText etKey;
+    private EditText etTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class SettingActivity extends AppCompatActivity {
 
         etId = (EditText) findViewById(R.id.et_id);
         etKey = (EditText) findViewById(R.id.et_key);
+        etTotal = (EditText) findViewById(R.id.et_total);
 
         init();
     }
@@ -29,12 +31,14 @@ public class SettingActivity extends AppCompatActivity {
     private void init() {
         etId.setText(StorageUtil.getID());
         etKey.setText(StorageUtil.getKey());
+        etTotal.setText(String.format("%d", StorageUtil.getTotal()));
     }
 
     private void save() {
         StorageUtil.setID(etId.getText().toString());
         StorageUtil.setKey(etKey.getText().toString());
-        ToastUtil.show(this, "Key saved", ToastUtil.SHORT);
+        StorageUtil.setTotal(Integer.parseInt(etTotal.getText().toString()));
+        ToastUtil.show(this, "Config saved", ToastUtil.SHORT);
     }
 
     @Override

@@ -19,6 +19,5 @@ public class AppDefine {
     public final static String KEY = "&api_key=";
     public final static String SERVICE_INFO = "getServiceInfo";
     public final static String LIVE_SERVICE_INFO = "getLiveServiceInfo";
-
-    public final static double TOTAL = 550.0;
+    
 }

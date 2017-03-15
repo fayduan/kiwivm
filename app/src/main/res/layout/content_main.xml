@@ -143,16 +143,15 @@
 
         android:layout_marginTop="40dp"
         app:draw_progress_text="true"
-        app:progress_background_color="@color/primaryLight"
 
-        app:progress_end_color="@color/colorPrimaryDark"
+        app:progress_end_color="@color/colorPrimary"
         app:progress_shader="linear"
-        app:progress_start_color="@color/colorPrimaryDark"
+        app:progress_start_color="@color/colorPrimary"
         app:progress_stroke_cap="round"
 
         app:progress_stroke_width="8dp"
 
-        app:progress_text_color="@color/colorPrimaryDark"
+        app:progress_text_color="@color/colorPrimary"
         app:progress_text_format_pattern="%d %%"
         app:progress_text_size="26sp"
         app:style="solid_line" />

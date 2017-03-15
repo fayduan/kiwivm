@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/AppTheme"
     tools:context="cn.duanyufei.kiwivm.view.SettingActivity">
@@ -14,7 +16,7 @@
         style="@style/LabelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="VEID"
@@ -37,9 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_key"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="2dp"
         android:gravity="center_horizontal" />
 
     <EditText
@@ -48,9 +47,37 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/txt_id"
         android:layout_alignEnd="@+id/et_key"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:gravity="center_horizontal"
         android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/txt_total"
+        style="@style/LabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_key"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Total Data"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/et_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txt_total"
+        android:layout_alignEnd="@+id/et_key"
+        android:gravity="center_horizontal"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/et_total"
+        android:textSize="16sp"
+        android:layout_alignParentRight="true"
+        android:paddingRight="20dp"
+        android:text="GB" />
 
 </RelativeLayout>
