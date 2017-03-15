@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">KiwiVM</string>
-    <string name="action_settings">Settings</string>
-    <string name="refresh">Refresh finished</string>
+    <string name="action_settings">设置</string>
+    <string name="refresh">刷新完成</string>
+    <string name="action_update">检查更新</string>
+    <string name="update_checking">正在检查更新...</string>
+    <string name="update_already_updated">最新版本，无需更新~</string>
+    <string name="update_dialog_title">发现新版本</string>
+    <string name="update_dialog_message">前往下载?</string>
+    <string name="update_error">检查更新时发生错误</string>
+    <string name="button_ok">好的</string>
+    <string name="button_later">以后再说</string>
 </resources>

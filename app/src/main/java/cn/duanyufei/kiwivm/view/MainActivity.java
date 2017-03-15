@@ -27,6 +27,7 @@ import cn.duanyufei.kiwivm.util.GsonUtil;
 import cn.duanyufei.kiwivm.util.NetUtil;
 import cn.duanyufei.kiwivm.util.StorageUtil;
 import cn.duanyufei.kiwivm.util.ToastUtil;
+import cn.duanyufei.kiwivm.util.UpdateTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -160,15 +161,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            startSettings();
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startSettings();
+                return true;
+            case R.id.action_update:
+                new UpdateTask(MainActivity.this).update();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

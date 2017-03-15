@@ -8,4 +8,10 @@
         android:title="@string/action_settings"
         android:icon="@mipmap/ic_dashboard_white_36dp"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_update"
+        android:orderInCategory="101"
+        android:title="@string/action_update"
+        app:showAsAction="never" />
 </menu>
