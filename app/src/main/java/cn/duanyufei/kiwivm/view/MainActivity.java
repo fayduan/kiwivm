@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        new UpdateTask(MainActivity.this).update();
+
         tvStatus = (TextView) findViewById(R.id.info_status);
         tvIpv4 = (TextView) findViewById(R.id.info_ipv4);
         tvIpv6 = (TextView) findViewById(R.id.info_ipv6);
