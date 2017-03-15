@@ -40,32 +40,13 @@ public class KWApplication extends Application {
             try {
                 mVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
             } catch (PackageManager.NameNotFoundException e) {
-                mVersion = "00.00.00";
-            }
-        }
-
-        return VERSION + mVersion.substring(0, 8);
-
-
-    }
-
-    public String getInternalVersion() {
-        if (mVersion == null) {
-            try {
-                mVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-            } catch (PackageManager.NameNotFoundException e) {
                 mVersion = "v0.0.0";
             }
         }
-        if (mSvnNum == 0) {
-            try {
-                mSvnNum = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
-            } catch (PackageManager.NameNotFoundException e) {
-                mSvnNum = 1;
-            }
-        }
 
-        return INTERNAL_VERSION + mVersion + " " + SVN + mSvnNum;
+        return mVersion;
+
+
     }
 
     public static Context getContext() {

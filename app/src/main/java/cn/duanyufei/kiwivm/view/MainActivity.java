@@ -21,6 +21,7 @@ import java.util.Date;
 
 import cn.duanyufei.kiwivm.R;
 import cn.duanyufei.kiwivm.app.AppDefine;
+import cn.duanyufei.kiwivm.app.KWApplication;
 import cn.duanyufei.kiwivm.model.LiveServiceInfo;
 import cn.duanyufei.kiwivm.model.VzStatus;
 import cn.duanyufei.kiwivm.util.GsonUtil;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private View progressView;
     private FloatingActionButton fab;
     private CircleProgressBar dataGraph;
+    private TextView tvVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        tvVersion = (TextView) findViewById(R.id.txt_version);
+        tvVersion.setText(KWApplication.getInstance().getVersion());
 
     }
 
