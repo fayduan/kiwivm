@@ -65,7 +65,7 @@ public class StorageUtil {
 
     public static int getTotal() {
         if (sTotal == 0) {
-            sTotal = sharedPreferences.getInt(TOTAL, 0);
+            sTotal = sharedPreferences.getInt(TOTAL, 500);
         }
         return sTotal;
     }

@@ -10,8 +10,8 @@ android {
         applicationId "cn.duanyufei.kiwivm"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 1
-        versionName "v0.0.0"
+        versionCode 5
+        versionName "v0.0.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         String version_tag = project.hasProperty("TRAVIS_TAG") ? TRAVIS_TAG : System.getenv("TRAVIS_TAG")
