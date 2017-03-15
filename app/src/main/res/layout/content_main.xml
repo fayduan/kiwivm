@@ -15,7 +15,7 @@
         style="@style/LabelTextView"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Status" />
+        android:text="状态" />
 
     <TextView
         android:id="@+id/txt_ipv4"
@@ -39,7 +39,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_ipv6"
-        android:text="Data (GB)" />
+        android:text="已用流量" />
 
     <TextView
         android:id="@+id/txt_data_counter2"
@@ -47,7 +47,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_data_counter"
-        android:text="Data (B)" />
+        android:text="剩余流量" />
 
     <TextView
         android:id="@+id/txt_data_next_reset"
@@ -55,7 +55,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt_data_counter2"
-        android:text="Next Date" />
+        android:text="流量复位" />
 
 
     <TextView
@@ -132,5 +132,40 @@
         app:spb_speed="2.0"
         app:spb_stroke_separator_length="4dp"
         app:spb_stroke_width="4dp" />
+
+    <com.dinuscxj.progressbar.CircleProgressBar
+        android:id="@+id/data_graph"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/txt_data_next_reset"
+
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginTop="40dp"
+        app:draw_progress_text="true"
+        app:progress_background_color="@color/primaryLight"
+
+        app:progress_end_color="@color/colorPrimaryDark"
+        app:progress_shader="linear"
+        app:progress_start_color="@color/colorPrimaryDark"
+        app:progress_stroke_cap="round"
+
+        app:progress_stroke_width="8dp"
+
+        app:progress_text_color="@color/colorPrimaryDark"
+        app:progress_text_format_pattern="%d %%"
+        app:progress_text_size="26sp"
+        app:style="solid_line" />
+
+    <TextView
+        android:id="@+id/txt_data_usage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/data_graph"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Data Usage"
+        android:textSize="20sp" />
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package cn.duanyufei.kiwivm.view;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +13,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dinuscxj.progressbar.CircleProgressBar;
+
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvData2;
     private View progressView;
     private FloatingActionButton fab;
+    private CircleProgressBar dataGraph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         tvDate = (TextView) findViewById(R.id.info_data_next_reset);
         progressView = findViewById(R.id.progress);
         progressView.setVisibility(View.INVISIBLE);
+
+        dataGraph = (CircleProgressBar) findViewById(R.id.data_graph);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -110,20 +115,29 @@ public class MainActivity extends AppCompatActivity {
     private void updateTextView(LiveServiceInfo info) {
         try {
             VzStatus status = info.getVz_status();
-            tvStatus.setText(status.getStatus());
+            tvStatus.setText(captureName(status.getStatus()));
             tvIpv4.setText(info.getIp_addresses().get(0));
             tvIpv6.setText(info.getIp_addresses().get(1));
             long data = info.getData_counter();
-            tvData2.setText(new DecimalFormat(",###").format(data) + " B");
+
             double doubleData = (double) data / 1024.0 / 1024.0 / 1024.0;
-            String dispData = String.format("%.8f GB", doubleData);
+            String dispData = String.format("%.3f GB", doubleData);
             tvData.setText(dispData);
+            double leftData = AppDefine.TOTAL - doubleData;
+            tvData2.setText(String.format("%.3f GB", leftData));
             Date time = new Date(info.getData_next_reset() * 1000);
             DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
             String dispDate = String.format(format.format(time));
             tvDate.setText(dispDate);
-        } catch (Exception e) {
 
+            int percent = (int) (doubleData / AppDefine.TOTAL * 100);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+                dataGraph.setProgress(50);
+            } else {
+                dataGraph.setProgress(50, true);
+            }
+        } catch (Exception e) {
+            Log.i(TAG, "updateTextView: " + e.getMessage());
         }
     }
 
@@ -158,5 +172,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private static String captureName(String name) {
+        char[] cs = name.toCharArray();
+        cs[0] -= 32;
+        return String.valueOf(cs);
+
     }
 }
