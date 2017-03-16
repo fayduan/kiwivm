@@ -9,3 +9,4 @@
 *.jks
 gradle.properties
 app/KiwiVM_*.apk
+.idea/misc.xml
