@@ -40,7 +40,7 @@ public class KWApplication extends Application {
             try {
                 mVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
             } catch (PackageManager.NameNotFoundException e) {
-                mVersion = "v0.0.0";
+                mVersion = "v0.0.1";
             }
         }
 

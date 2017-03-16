@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -23,13 +22,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cn.duanyufei.kiwivm.R;
+import cn.duanyufei.kiwivm.app.AppDefine;
+import cn.duanyufei.kiwivm.app.KWApplication;
 
 /**
  * Created by DUAN Yufei on 2017/3/15.
  */
 public class UpdateTask extends AsyncTask<String, Void, String> {
     public static final String TAG = UpdateTask.class.getName();
-    public static final String UPDATE_URL = "https://api.github.com/repos/fayduan/kiwivm/releases/latest";
 
     private Context context;
 
@@ -63,30 +63,29 @@ public class UpdateTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         if (result == null || result.length() == 0) {
-            Toast.makeText(context, R.string.update_error, Toast.LENGTH_SHORT).show();
+            ToastUtil.show(context, R.string.update_error, ToastUtil.SHORT);
             Log.e(TAG, "No Result from Http Request!");
             return;
         }
         try {
             JSONObject verJSON = new JSONObject(result);
-            String latestVersion = verJSON.getString("tag_name");
+            String latestVersion = verJSON.getString("versionShort");
 
-            String version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+            String version = KWApplication.getInstance().getVersion();
 
             Log.i(TAG, "Latest Version: " + latestVersion);
             Log.i(TAG, "This Version: " + version);
 
             if (isUpdated(latestVersion, version)) {
-                Toast.makeText(context, context.getString(R.string.update_already_updated), Toast.LENGTH_SHORT).show();
+                ToastUtil.show(context, context.getString(R.string.update_already_updated), ToastUtil.SHORT);
             } else {
-                final String downloadUrl = verJSON.getJSONArray("assets").getJSONObject(0).getString("browser_download_url");
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle(context.getString(R.string.update_dialog_title) + latestVersion);
                 builder.setMessage(context.getString(R.string.update_dialog_message));
                 builder.setPositiveButton(context.getString(R.string.button_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(downloadUrl));
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(AppDefine.DOWNLOAD_URL));
                         browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(browserIntent);
                     }
@@ -101,8 +100,6 @@ public class UpdateTask extends AsyncTask<String, Void, String> {
             }
         } catch (JSONException e) {
             Log.e(TAG, "Checking Update Error!");
-            e.printStackTrace();
-        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -140,6 +137,6 @@ public class UpdateTask extends AsyncTask<String, Void, String> {
     }
 
     public void update() {
-        this.execute(UPDATE_URL);
+        this.execute(AppDefine.UPDATE_URL + AppDefine.FIR_TOKEN);
     }
 }

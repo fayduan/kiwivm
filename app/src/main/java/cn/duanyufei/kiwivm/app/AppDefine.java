@@ -20,4 +20,7 @@ public class AppDefine {
     public final static String SERVICE_INFO = "getServiceInfo";
     public final static String LIVE_SERVICE_INFO = "getLiveServiceInfo";
 
+    public static final String UPDATE_URL = "http://api.fir.im/apps/latest/58ca2449959d6912f20001c7";
+    public static final String FIR_TOKEN = "?api_token=2352c83c41225172203a07d0ab62b147";
+    public static final String DOWNLOAD_URL = "http://fir.im/kiwivm";
 }
