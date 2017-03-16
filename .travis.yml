@@ -27,7 +27,7 @@ script:
 before_install:
   - openssl aes-256-cbc -K $encrypted_67a14df3a6a2_key -iv $encrypted_67a14df3a6a2_iv
     -in fayduan.jks.enc -out fayduan.jks -d
-  - rvm install 2.1.5
+  - rvm install 2.4.0
   - gem install fir-cli
 deploy:
   provider: releases
