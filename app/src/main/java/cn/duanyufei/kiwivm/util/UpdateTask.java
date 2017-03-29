@@ -70,13 +70,14 @@ public class UpdateTask extends AsyncTask<String, Void, String> {
         try {
             JSONObject verJSON = new JSONObject(result);
             String latestVersion = verJSON.getString("versionShort");
+            int latestVersionCode = verJSON.getInt("build");
 
-            String version = KWApplication.getInstance().getVersion();
+            int versionCode = KWApplication.getInstance().getVersionCode();
 
-            Log.i(TAG, "Latest Version: " + latestVersion);
-            Log.i(TAG, "This Version: " + version);
+            Log.i(TAG, "Latest Version: " + latestVersionCode);
+            Log.i(TAG, "This Version: " + versionCode);
 
-            if (isUpdated(latestVersion, version)) {
+            if (versionCode > latestVersionCode) {
                 ToastUtil.show(context, context.getString(R.string.update_already_updated), ToastUtil.SHORT);
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);

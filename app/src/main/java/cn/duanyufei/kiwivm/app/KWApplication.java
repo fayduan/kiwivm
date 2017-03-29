@@ -21,7 +21,7 @@ public class KWApplication extends Application {
     private static KWApplication instance = null;
 
     private static String mVersion = null;
-    private static int mSvnNum = 1;
+    private static int mVersionCode = 1;
 
     public static KWApplication getInstance() {
         return instance;
@@ -45,8 +45,19 @@ public class KWApplication extends Application {
         }
 
         return mVersion;
+    }
 
+    public int getVersionCode() {
 
+        if (mVersionCode == 0) {
+            try {
+                mVersionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+            } catch (PackageManager.NameNotFoundException e) {
+                mVersionCode = 0;
+            }
+        }
+
+        return mVersionCode;
     }
 
     public static Context getContext() {

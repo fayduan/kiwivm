@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             String dispDate = String.format(format.format(time));
             tvDate.setText(dispDate);
 
-            int percent = (int) (doubleData / (double) StorageUtil.getTotal() * 100);
+            int percent = (int) (doubleData / (double) StorageUtil.getTotal() * 100 + 0.5);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 dataGraph.setProgress(percent);
             } else {
