@@ -47,7 +47,7 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'FIR_TOKEN', project.hasProperty("FIR_TOKEN") ? FIR_TOKEN : System.getenv("FIR_TOKEN")
+        it.buildConfigField 'String', 'FIR_TOKEN', project.hasProperty("FIR_TOKEN_STR") ? FIR_TOKEN_STR : System.getenv("FIR_TOKEN_STR")
     }
 }
 
