@@ -77,7 +77,7 @@ public class UpdateTask extends AsyncTask<String, Void, String> {
             Log.i(TAG, "Latest Version: " + latestVersionCode);
             Log.i(TAG, "This Version: " + versionCode);
 
-            if (versionCode > latestVersionCode) {
+            if (versionCode >= latestVersionCode) {
                 ToastUtil.show(context, context.getString(R.string.update_already_updated), ToastUtil.SHORT);
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
