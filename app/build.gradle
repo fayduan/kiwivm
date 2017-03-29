@@ -47,7 +47,7 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'FRI_TOKEN', FRI_TOKEN
+        it.buildConfigField 'String', 'FRI_TOKEN', project.hasProperty("FRI_TOKEN") ? FRI_TOKEN : System.getenv("FRI_TOKEN")
     }
 }
 
