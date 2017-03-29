@@ -138,6 +138,6 @@ public class UpdateTask extends AsyncTask<String, Void, String> {
     }
 
     public void update() {
-        this.execute(AppDefine.UPDATE_URL + AppDefine.FIR_TOKEN);
+        this.execute(AppDefine.UPDATE_URL + AppDefine.FIR_TOKEN_URL);
     }
 }

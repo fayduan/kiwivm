@@ -46,6 +46,9 @@ android {
             }
         }
     }
+    buildTypes.each {
+        it.buildConfigField 'String', 'FRI_TOKEN', FRI_TOKEN
+    }
 }
 
 def renameAPK(variant, defaultConfig) {
