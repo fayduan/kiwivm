@@ -18,8 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import cn.duanyufei.kiwivm.R;
 import cn.duanyufei.kiwivm.app.AppDefine;
@@ -103,38 +101,6 @@ public class UpdateTask extends AsyncTask<String, Void, String> {
             Log.e(TAG, "Checking Update Error!");
             e.printStackTrace();
         }
-    }
-
-    private boolean isUpdated(String latest, String now) {
-        int[] lv = new int[3];
-        int[] nv = new int[3];
-
-        Pattern pattern = Pattern.compile("v(\\d+)\\.(\\d+)\\.(\\d+)");
-
-        Matcher matcher = pattern.matcher(latest);
-        if (matcher.find()) {
-            for (int i = 0; i < 3; i++) {
-                lv[i] = Integer.parseInt(matcher.group(i + 1));
-            }
-        }
-
-        matcher = pattern.matcher(now);
-        if (matcher.find()) {
-            for (int i = 0; i < 3; i++) {
-                nv[i] = Integer.parseInt(matcher.group(i + 1));
-            }
-        }
-
-        boolean result = true;
-
-        for (int i = 0; i < 3; i++) {
-            if (lv[i] > nv[i]) {
-                result = false;
-                break;
-            }
-        }
-
-        return result;
     }
 
     public void update() {

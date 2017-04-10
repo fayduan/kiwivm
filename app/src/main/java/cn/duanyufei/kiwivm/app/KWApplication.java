@@ -21,7 +21,7 @@ public class KWApplication extends Application {
     private static KWApplication instance = null;
 
     private static String mVersion = null;
-    private static int mVersionCode = 1;
+    private static int mVersionCode = 0;
 
     public static KWApplication getInstance() {
         return instance;
